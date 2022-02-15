@@ -80,6 +80,7 @@ const bundleConfig = {
     name: 'Sentry',
     sourcemap: true,
     strict: false,
+    esModule: false,
   },
   context: 'window',
   plugins: [
