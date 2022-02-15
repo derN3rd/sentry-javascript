@@ -1,4 +1,4 @@
-/*! @sentry/tracing & @sentry/browser 6.17.8 (ceaec7c3e) | https://github.com/getsentry/sentry-javascript */
+/*! @sentry/tracing & @sentry/browser 6.17.8 (6d4808a74) | https://github.com/getsentry/sentry-javascript */
 var Sentry = (function (exports) {
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.

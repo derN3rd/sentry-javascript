@@ -17,22 +17,6 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
-/* global Reflect, Promise */
-
-var extendStatics = function(d, b) {
-    extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-    return extendStatics(d, b);
-};
-
-function __extends(d, b) {
-    if (typeof b !== "function" && b !== null)
-        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-    extendStatics(d, b);
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
 
 var __assign = function() {
     __assign = Object.assign || function __assign(t) {
@@ -86,44 +70,6 @@ function getGlobalObject() {
                 ? self
                 : fallbackGlobalObject);
 }
-
-var setPrototypeOf = Object.setPrototypeOf || ({ __proto__: [] } instanceof Array ? setProtoOf : mixinProperties);
-/**
- * setPrototypeOf polyfill using __proto__
- */
-// eslint-disable-next-line @typescript-eslint/ban-types
-function setProtoOf(obj, proto) {
-    // @ts-ignore __proto__ does not exist on obj
-    obj.__proto__ = proto;
-    return obj;
-}
-/**
- * setPrototypeOf polyfill using mixin
- */
-// eslint-disable-next-line @typescript-eslint/ban-types
-function mixinProperties(obj, proto) {
-    for (var prop in proto) {
-        if (!Object.prototype.hasOwnProperty.call(obj, prop)) {
-            // @ts-ignore typescript complains about indexing so we remove
-            obj[prop] = proto[prop];
-        }
-    }
-    return obj;
-}
-
-/** An error emitted by Sentry SDKs and related utilities. */
-var SentryError = /** @class */ (function (_super) {
-    __extends(SentryError, _super);
-    function SentryError(message) {
-        var _newTarget = this.constructor;
-        var _this = _super.call(this, message) || this;
-        _this.message = message;
-        _this.name = _newTarget.prototype.constructor.name;
-        setPrototypeOf(_this, _newTarget.prototype);
-        return _this;
-    }
-    return SentryError;
-}(Error));
 
 // TODO: Implement different loggers for different environments
 var global = getGlobalObject();
@@ -237,27 +183,6 @@ function basename(path, ext) {
     }
     return f;
 }
-
-/**
- * TODO(v7): Remove this enum and replace with SeverityLevel
- */
-var Severity;
-(function (Severity) {
-    /** JSDoc */
-    Severity["Fatal"] = "fatal";
-    /** JSDoc */
-    Severity["Error"] = "error";
-    /** JSDoc */
-    Severity["Warning"] = "warning";
-    /** JSDoc */
-    Severity["Log"] = "log";
-    /** JSDoc */
-    Severity["Info"] = "info";
-    /** JSDoc */
-    Severity["Debug"] = "debug";
-    /** JSDoc */
-    Severity["Critical"] = "critical";
-})(Severity || (Severity = {}));
 
 /**
  * A TimestampSource implementation for environments that do not support the Performance Web API natively.
