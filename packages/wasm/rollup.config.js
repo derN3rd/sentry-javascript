@@ -90,7 +90,14 @@ function loadAllIntegrations() {
         strict: false,
       },
       plugins: build.plugins,
-      treeshake: 'smallest',
+      treeshake: {
+        annotations: true,
+        correctVarValueBeforeDeclaration: false,
+        moduleSideEffects: () => false,
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false,
+        unknownGlobalSideEffects: false,
+      },
     });
   });
   return builds;

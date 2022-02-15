@@ -5,9 +5,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 
-const commitHash = require('child_process')
-  .execSync('git rev-parse --short HEAD', { encoding: 'utf-8' })
-  .trim();
+const commitHash = require('child_process').execSync('git rev-parse --short HEAD', { encoding: 'utf-8' }).trim();
 
 const terserInstance = terser({
   mangle: {
@@ -79,7 +77,14 @@ const bundleConfig = {
       banner: `/*! @sentry/tracing & @sentry/browser <%= pkg.version %> (${commitHash}) | https://github.com/getsentry/sentry-javascript */`,
     }),
   ],
-  treeshake: 'smallest',
+  treeshake: {
+    annotations: true,
+    correctVarValueBeforeDeclaration: false,
+    moduleSideEffects: () => false,
+    propertyReadSideEffects: false,
+    tryCatchDeoptimization: false,
+    unknownGlobalSideEffects: false,
+  },
 };
 
 export default [
@@ -101,9 +106,6 @@ export default [
       file: 'build/bundle.tracing.min.js',
     },
     // Uglify has to be at the end of compilation, BUT before the license banner
-    plugins: bundleConfig.plugins
-      .slice(0, -1)
-      .concat(terserInstance)
-      .concat(bundleConfig.plugins.slice(-1)),
+    plugins: bundleConfig.plugins.slice(0, -1).concat(terserInstance).concat(bundleConfig.plugins.slice(-1)),
   },
 ];
