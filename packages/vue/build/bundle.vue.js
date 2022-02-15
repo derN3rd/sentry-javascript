@@ -1,4 +1,4 @@
-/*! @sentry/vue 6.17.8 (9bc3638c9) | https://github.com/getsentry/sentry-javascript */
+/*! @sentry/vue 6.17.8 (32b055b1d) | https://github.com/getsentry/sentry-javascript */
 var Sentry = (function (exports) {
 
     /*! *****************************************************************************
