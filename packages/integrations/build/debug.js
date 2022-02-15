@@ -1,8 +1,6 @@
 (function (__window) {
 var exports = {};
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -40,7 +38,7 @@ var fallbackGlobalObject = {};
  * @returns Global scope object
  */
 function getGlobalObject() {
-    return ( typeof window !== 'undefined' // eslint-disable-line no-restricted-globals
+    return (typeof window !== 'undefined' // eslint-disable-line no-restricted-globals
             ? window // eslint-disable-line no-restricted-globals
             : typeof self !== 'undefined'
                 ? self
@@ -140,7 +138,7 @@ var Logger = /** @class */ (function () {
 }());
 // Ensure we only have a single logger instance, even if multiple versions of @sentry/utils are being used
 global.__SENTRY__ = global.__SENTRY__ || {};
-var logger = global.__SENTRY__.logger || (global.__SENTRY__.logger = new Logger());
+global.__SENTRY__.logger || (global.__SENTRY__.logger = new Logger());
 
 /** JSDoc */
 var Debug = /** @class */ (function () {

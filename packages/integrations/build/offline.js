@@ -1,8 +1,6 @@
 (function (__window) {
 var exports = {};
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -67,7 +65,7 @@ var fallbackGlobalObject = {};
  * @returns Global scope object
  */
 function getGlobalObject() {
-    return ( typeof window !== 'undefined' // eslint-disable-line no-restricted-globals
+    return (typeof window !== 'undefined' // eslint-disable-line no-restricted-globals
             ? window // eslint-disable-line no-restricted-globals
             : typeof self !== 'undefined'
                 ? self
@@ -3471,6 +3469,8 @@ module.exports = localforage_js;
 });
 });
 
+var localForage = localforage;
+
 /**
  * cache offline errors and send when connected
  */
@@ -3488,7 +3488,7 @@ var Offline = /** @class */ (function () {
         this.global = getGlobalObject();
         this.maxStoredEvents = options.maxStoredEvents || 30; // set a reasonable default
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        this.offlineEventStore = localforage.createInstance({
+        this.offlineEventStore = localForage.createInstance({
             name: 'sentry/offlineEventStore',
         });
     }

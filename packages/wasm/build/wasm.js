@@ -1,8 +1,6 @@
 (function (__window) {
 var exports = {};
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var IMAGES = [];
 /**
  * Returns the extracted meta information from a web assembly module that

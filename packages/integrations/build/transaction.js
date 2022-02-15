@@ -1,8 +1,6 @@
 (function (__window) {
 var exports = {};
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 /** Add node transaction to the event */
 var Transaction = /** @class */ (function () {
     function Transaction() {

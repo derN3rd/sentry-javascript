@@ -1,8 +1,6 @@
 (function (__window) {
 var exports = {};
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 

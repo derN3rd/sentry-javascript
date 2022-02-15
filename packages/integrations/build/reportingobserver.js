@@ -1,8 +1,6 @@
 (function (__window) {
 var exports = {};
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -41,7 +39,7 @@ var fallbackGlobalObject = {};
  * @returns Global scope object
  */
 function getGlobalObject() {
-    return ( typeof window !== 'undefined' // eslint-disable-line no-restricted-globals
+    return (typeof window !== 'undefined' // eslint-disable-line no-restricted-globals
             ? window // eslint-disable-line no-restricted-globals
             : typeof self !== 'undefined'
                 ? self

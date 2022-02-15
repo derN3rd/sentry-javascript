@@ -1,8 +1,6 @@
 (function (__window) {
 var exports = {};
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 /**
  * NOTE: In order to avoid circular dependencies, if you add a function to this module and it needs to print something,
  * you must either a) use `console.log` rather than the logger, or b) put your function elsewhere.
@@ -14,7 +12,7 @@ var fallbackGlobalObject = {};
  * @returns Global scope object
  */
 function getGlobalObject() {
-    return ( typeof window !== 'undefined' // eslint-disable-line no-restricted-globals
+    return (typeof window !== 'undefined' // eslint-disable-line no-restricted-globals
             ? window // eslint-disable-line no-restricted-globals
             : typeof self !== 'undefined'
                 ? self

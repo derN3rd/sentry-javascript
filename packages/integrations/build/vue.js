@@ -1,8 +1,6 @@
 (function (__window) {
 var exports = {};
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -64,7 +62,7 @@ var fallbackGlobalObject = {};
  * @returns Global scope object
  */
 function getGlobalObject() {
-    return ( typeof window !== 'undefined' // eslint-disable-line no-restricted-globals
+    return (typeof window !== 'undefined' // eslint-disable-line no-restricted-globals
             ? window // eslint-disable-line no-restricted-globals
             : typeof self !== 'undefined'
                 ? self
@@ -235,7 +233,7 @@ function getBrowserPerformance() {
 /**
  * The Performance API implementation for the current platform, if available.
  */
-var platformPerformance =  getBrowserPerformance();
+var platformPerformance = getBrowserPerformance();
 var timestampSource = platformPerformance === undefined
     ? dateTimestampSource
     : {
@@ -244,7 +242,7 @@ var timestampSource = platformPerformance === undefined
 /**
  * Returns a timestamp in seconds since the UNIX epoch using the Date API.
  */
-var dateTimestampInSeconds = dateTimestampSource.nowSeconds.bind(dateTimestampSource);
+dateTimestampSource.nowSeconds.bind(dateTimestampSource);
 /**
  * Returns a timestamp in seconds since the UNIX epoch using either the Performance or Date APIs, depending on the
  * availability of the Performance API.
@@ -263,7 +261,7 @@ var timestampWithMs = timestampInSeconds;
  * The number of milliseconds since the UNIX epoch. This value is only usable in a browser, and only when the
  * performance API is available.
  */
-var browserPerformanceTimeOrigin = (function () {
+((function () {
     // Unfortunately browsers may report an inaccurate time origin data, through either performance.timeOrigin or
     // performance.timing.navigationStart, which results in poor results in performance data. We only treat time origin
     // data as reliable if they are within a reasonable threshold of the current time.
@@ -300,7 +298,7 @@ var browserPerformanceTimeOrigin = (function () {
         }
     }
     return dateNow;
-})();
+}))();
 
 /**
  * Used to extract Tracing integration from the current client,
