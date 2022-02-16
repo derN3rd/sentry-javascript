@@ -3,6 +3,8 @@ import typescript from 'rollup-plugin-typescript2';
 import license from 'rollup-plugin-license';
 import replace from '@rollup/plugin-replace';
 
+// import { terserInstance } from '../../rollup.config';
+
 const commitHash = require('child_process').execSync('git rev-parse --short HEAD', { encoding: 'utf-8' }).trim();
 
 const terserInstance = terser({

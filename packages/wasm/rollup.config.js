@@ -2,6 +2,8 @@ import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import replace from '@rollup/plugin-replace';
 
+// import { terserInstance } from '../../rollup.config';
+
 const terserInstance = terser({
   mangle: {
     // captureExceptions and captureMessage are public API methods and they don't need to be listed here

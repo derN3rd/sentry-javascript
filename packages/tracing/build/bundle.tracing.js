@@ -1,4 +1,4 @@
-/*! @sentry/tracing & @sentry/browser 6.17.8 (32b055b1d) | https://github.com/getsentry/sentry-javascript */
+/*! @sentry/tracing & @sentry/browser 6.17.8 (bf1ef301d) | https://github.com/getsentry/sentry-javascript */
 var Sentry = (function (exports) {
 
     /*! *****************************************************************************
