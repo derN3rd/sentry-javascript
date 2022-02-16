@@ -1,116 +1,116 @@
-!(function (e) {
-  var n = {},
-    t = [];
-  function r(e, n) {
-    var r = (function (e) {
-        var n = WebAssembly.Module.customSections(e, 'build_id'),
-          t = null,
+!(function (n) {
+  var i = {},
+    e = [];
+  function r(n, i) {
+    var r = (function (n) {
+        var i = WebAssembly.Module.customSections(n, 'build_id'),
+          e = null,
           r = null;
-        if (n.length > 0) {
-          var i = new Uint8Array(n[0]);
-          t = Array.from(i).reduce(function (e, n) {
-            return e + n.toString(16).padStart(2, '0');
+        if (i.length > 0) {
+          var t = new Uint8Array(i[0]);
+          e = Array.from(t).reduce(function (n, i) {
+            return n + i.toString(16).padStart(2, '0');
           }, '');
         }
-        var a = WebAssembly.Module.customSections(e, 'external_debug_info');
-        if (a.length > 0) {
-          var u = new Uint8Array(a[0]);
-          r = new TextDecoder('utf-8').decode(u);
+        var u = WebAssembly.Module.customSections(n, 'external_debug_info');
+        if (u.length > 0) {
+          var o = new Uint8Array(u[0]);
+          r = new TextDecoder('utf-8').decode(o);
         }
-        return { buildId: t, debugFile: r };
-      })(e),
-      i = r.buildId,
-      a = r.debugFile;
-    if (i) {
-      var u = t.findIndex(function (e) {
-        return e.code_file === n;
+        return { buildId: e, debugFile: r };
+      })(n),
+      t = r.buildId,
+      u = r.debugFile;
+    if (t) {
+      var o = e.findIndex(function (n) {
+        return n.code_file === i;
       });
-      u >= 0 && t.splice(u, 1),
-        t.push({
+      o >= 0 && e.splice(o, 1),
+        e.push({
           type: 'wasm',
-          code_id: i,
-          code_file: n,
-          debug_file: a ? new URL(a, n).href : null,
-          debug_id: i.padEnd(32, '0').substr(0, 32) + '0',
+          code_id: t,
+          code_file: i,
+          debug_file: u ? new URL(u, i).href : null,
+          debug_id: t.padEnd(32, '0').substr(0, 32) + '0',
         });
     }
   }
-  function i(e) {
-    var n = !1;
+  function t(n) {
+    var i = !1;
     return (
-      e.forEach(function (e) {
-        if (e.filename) {
+      n.forEach(function (n) {
+        if (n.filename) {
           var r,
-            i = e.filename.match(/^(.*?):wasm-function\[\d+\]:(0x[a-fA-F0-9]+)$/);
-          if (null !== i) {
-            var a =
-              ((r = i[1]),
-              t.findIndex(function (e) {
-                return e.code_file === r;
+            t = n.filename.match(/^(.*?):wasm-function\[\d+\]:(0x[a-fA-F0-9]+)$/);
+          if (null !== t) {
+            var u =
+              ((r = t[1]),
+              e.findIndex(function (n) {
+                return n.code_file === r;
               }));
-            a >= 0 &&
-              ((e.instruction_addr = i[2]),
-              (e.addr_mode = 'rel:' + a),
-              (e.filename = i[1]),
-              (e.platform = 'native'),
-              (n = !0));
+            u >= 0 &&
+              ((n.instruction_addr = t[2]),
+              (n.addr_mode = 'rel:' + u),
+              (n.filename = t[1]),
+              (n.platform = 'native'),
+              (i = !0));
           }
         }
       }),
-      n
+      i
     );
   }
-  var a = (function () {
-    function e() {
-      this.name = e.id;
+  var u = (function () {
+    function n() {
+      this.name = n.id;
     }
     return (
-      (e.prototype.setupOnce = function (e, n) {
+      (n.prototype.setupOnce = function (n, i) {
         !(function () {
           if ('instantiateStreaming' in WebAssembly) {
-            var e = WebAssembly.instantiateStreaming;
-            WebAssembly.instantiateStreaming = function (n, t) {
-              return Promise.resolve(n).then(function (n) {
-                return e(n, t).then(function (e) {
-                  return n.url && r(e.module, n.url), e;
+            var n = WebAssembly.instantiateStreaming;
+            WebAssembly.instantiateStreaming = function (i, e) {
+              return Promise.resolve(i).then(function (i) {
+                return n(i, e).then(function (n) {
+                  return i.url && r(n.module, i.url), n;
                 });
               });
             };
           }
           if ('compileStreaming' in WebAssembly) {
-            var n = WebAssembly.compileStreaming;
-            WebAssembly.compileStreaming = function (e) {
-              return Promise.resolve(e).then(function (e) {
-                return n(e).then(function (n) {
-                  return e.url && r(n, e.url), n;
+            var i = WebAssembly.compileStreaming;
+            WebAssembly.compileStreaming = function (n) {
+              return Promise.resolve(n).then(function (n) {
+                return i(n).then(function (i) {
+                  return n.url && r(i, n.url), i;
                 });
               });
             };
           }
         })(),
-          e(function (e) {
-            var n,
+          n(function (n) {
+            var i,
               r = !1;
             return (
-              e.exception &&
-                e.exception.values &&
-                e.exception.values.forEach(function (e) {
-                  var n, t;
-                  (null === (t = null === (n = e) || void 0 === n ? void 0 : n.stacktrace) || void 0 === t
+              n.exception &&
+                n.exception.values &&
+                n.exception.values.forEach(function (n) {
+                  var i, e;
+                  (null === (e = null === (i = n) || void 0 === i ? void 0 : i.stacktrace) || void 0 === e
                     ? void 0
-                    : t.frames) && (r = r || i(e.stacktrace.frames));
+                    : e.frames) && (r = r || t(n.stacktrace.frames));
                 }),
-              (null === (n = e.stacktrace) || void 0 === n ? void 0 : n.frames) && (r = r || i(e.stacktrace.frames)),
-              r && ((e.debug_meta = e.debug_meta || {}), (e.debug_meta.images = t)),
-              e
+              (null === (i = n.stacktrace) || void 0 === i ? void 0 : i.frames) && (r = r || t(n.stacktrace.frames)),
+              r && ((n.debug_meta = n.debug_meta || {}), (n.debug_meta.images = e)),
+              n
             );
           });
       }),
-      (e.id = 'Wasm'),
-      e
+      (n.id = 'Wasm'),
+      n
     );
   })();
-  for (var u in ((n.Wasm = a), (e.Sentry = e.Sentry || {}), (e.Sentry.Integrations = e.Sentry.Integrations || {}), n))
-    Object.prototype.hasOwnProperty.call(n, u) && (e.Sentry.Integrations[u] = n[u]);
+  for (var o in ((i.Wasm = u), (n.Sentry = n.Sentry || {}), (n.Sentry.Integrations = n.Sentry.Integrations || {}), i))
+    Object.prototype.hasOwnProperty.call(i, o) && (n.Sentry.Integrations[o] = i[o]);
 })(window);
 //# sourceMappingURL=wasm.min.js.map
